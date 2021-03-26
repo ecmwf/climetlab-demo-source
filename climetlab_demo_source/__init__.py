@@ -7,15 +7,26 @@
 # nor does it submit to any jurisdiction.
 #
 
-from climetlab import Source
-import math
-import xarray as xr
-import numpy as np
+import pandas as pd
+from climetlab import DataSource
+from sqlalchemy import create_engine
 
 
-class DemoSource(Source):
+class DemoSource(DataSource):
+    def __init__(self, database, query, **kwargs):
+        self.database = database
+        self.query = query
+        self.kwargs = kwargs
 
-    def __init__(self, *args, **kwargs):
-        pass
+    def to_pandas(self, **kwargs):
+        engine = create_engine(self.database)
+
+        options = {}
+        options.update(self.kwargs)
+        options.update(kwargs)
+
+        with engine.connect() as connection:
+            return pd.read_sql(self.query, connection, **options)
+
 
 source = DemoSource

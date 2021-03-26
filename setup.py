@@ -34,7 +34,7 @@ setuptools.setup(
     url="https://github.com/ecmwf/climetlab-demo-source",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=["requests"],
+    install_requires=["SQLAlchemy", "pandas"],
     zip_safe=True,
     entry_points={"climetlab.sources": ["demo-source = climetlab_demo_source"]},
     keywords="meteorology",
