@@ -8,11 +8,11 @@
 #
 
 import pandas as pd
-from climetlab import DataSource
+from climetlab import Source
 from sqlalchemy import create_engine
 
 
-class DemoSource(DataSource):
+class DemoSource(Source):
     def __init__(self, database, query, **kwargs):
         self.database = database
         self.query = query
