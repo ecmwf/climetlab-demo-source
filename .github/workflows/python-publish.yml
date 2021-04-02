@@ -11,37 +11,22 @@ on:
     branches: [master]
 
 jobs:
-  checks:
-
+  quality:
+    name: Code QA
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: Install packages
-      run: |
-        pip install black pytest flake8 isort
-
-    - name: Code QA
-      run: |
-        black --version
-        isort --check --profile=black .
-        black --check .
-        flake8 .
-
-    # - name: Test
-    #   run: pytest
+      - uses: actions/checkout@v2
+      - run: pip install black flake8 isort
+      - run: black --version
+      - run: isort --check --profile=black .
+      - run: black --check .
+      - run: flake8 .
 
   deploy:
     if: ${{ github.event_name == 'release' }}
 
     name: Upload to Pypi
-    needs: checks
+    needs: quality
     runs-on: ubuntu-latest
 
     steps:

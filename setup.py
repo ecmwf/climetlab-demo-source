@@ -20,7 +20,7 @@ def read(fname):
     return io.open(file_path, encoding="utf-8").read()
 
 
-version = "0.0.2"
+version = "0.0.3"
 
 
 setuptools.setup(
@@ -34,7 +34,7 @@ setuptools.setup(
     url="https://github.com/ecmwf/climetlab-demo-source",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=["SQLAlchemy", "pandas", "climetlab>=0.4.9"],
+    install_requires=["SQLAlchemy", "pandas"],
     zip_safe=True,
     entry_points={"climetlab.sources": ["demo-source = climetlab_demo_source"]},
     keywords="meteorology",
