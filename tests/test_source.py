@@ -1,7 +1,9 @@
 import os
 import sqlite3
 
-from climetlab_demo_source import source
+import climetlab as cml
+
+import climetlab_demo_source
 
 DATA = [
     (50, 3.3, "2001-01-01 00:00:00", 4.9),
@@ -29,8 +31,13 @@ def make_db():
 
 def test_source():
     make_db()
-
-    s = source("sqlite:///test.db", "select * from data;", parse_dates=["time"])
+    cml.register_source(climetlab_demo_source)
+    s = cml.load_source(
+        "climetlab-demo-source",
+        "sqlite:///test.db",
+        "select * from data;",
+        parse_dates=["time"],
+    )
     df = s.to_pandas()
     print(df)
 
