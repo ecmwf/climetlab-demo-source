@@ -31,9 +31,8 @@ def make_db():
 
 def test_source():
     make_db()
-    cml.register_source(climetlab_demo_source)
     s = cml.load_source(
-        "climetlab-demo-source",
+        "demo-source",
         "sqlite:///test.db",
         "select * from data;",
         parse_dates=["time"],
