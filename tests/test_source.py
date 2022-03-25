@@ -3,8 +3,6 @@ import sqlite3
 
 import climetlab as cml
 
-import climetlab_demo_source
-
 DATA = [
     (50, 3.3, "2001-01-01 00:00:00", 4.9),
     (51, -3, "2001-01-02 00:00:00", 7.3),
